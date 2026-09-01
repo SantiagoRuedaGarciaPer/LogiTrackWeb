@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LogiTrack - Inicio</title>
+
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+
+<body>
+
+    <!-- Barra superior -->
+    <header class="navbar">
+
+        <h1>LogiTrack</h1>
+
+        <div class="navbar-buttons">
+
+            <button id="btnPerfil">
+                Mi perfil
+            </button>
+
+            <button id="btnCerrarSesion">
+                Cerrar sesión
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Contenido principal -->
+    <main class="home-container">
+
+        <h2>Bienvenido a LogiTrack</h2>
+
+        <p>Seleccione una opción para continuar.</p>
+
+
+        <div class="menu">
+
+            <button onclick="window.location.href='empleados.html'">
+                Empleados
+            </button>
+
+            <button onclick="window.location.href='bodegas.html'">
+                Bodegas
+            </button>
+
+            <button onclick="window.location.href='productos.html'">
+                Productos
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- Ventana de información del usuario -->
+    <div id="perfilModal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Información del usuario</h2>
+
+            <p>
+                <strong>Nombre:</strong>
+                <span id="usuarioNombre">Cargando...</span>
+            </p>
+
+            <p>
+                <strong>Correo:</strong>
+                <span id="usuarioCorreo">Cargando...</span>
+            </p>
+
+            <p>
+                <strong>Cargo:</strong>
+                <span id="usuarioCargo">Cargando...</span>
+            </p>
+
+            <button id="btnCerrarPerfil">
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/home.js"></script>
+
+</body>
+
+</html>
