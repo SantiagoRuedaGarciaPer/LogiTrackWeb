@@ -38,6 +38,53 @@ function obtenerHeaders() {
     };
 }
 
+// =========================
+// Listar producto
+// =========================
+document.getElementById("btnListar").addEventListener("click", listarProductos);
+
+async function listarProductos() {
+    contenido.innerHTML = `
+
+        <h3>Productos encontrados</h3>
+
+        <div id="resultado"></div>
+    `;
+    try {
+
+        const response = await fetch(
+            `${API_URL}/producto`,
+            {
+                method: "GET",
+                headers: obtenerHeaders()
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            document.getElementById("resultado").innerHTML =
+                `<p class="error">No se pudieron obtener los productos.</p>`;
+
+            return;
+        }
+
+
+        mostrarProductos(data);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("resultado").innerHTML =
+        `<p class="error">Error al buscar el producto.</p>`;
+    }
+}
+
 
 // =========================
 // CREAR PRODUCTO

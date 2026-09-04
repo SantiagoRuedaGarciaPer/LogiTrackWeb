@@ -38,6 +38,55 @@ function obtenerHeaders() {
     };
 }
 
+// =========================
+// Listar bodegas
+// =========================
+
+document.getElementById("btnListar").addEventListener("click", listarBodegas);
+
+async function listarBodegas() {
+    contenido.innerHTML = `
+
+        <h3>Bodegas encontrados</h3>
+
+        <div id="resultado"></div>
+    `;
+    try {
+
+        const response = await fetch(
+            `${API_URL}/bodegas`,
+            {
+                method: "GET",
+                headers: obtenerHeaders()
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            document.getElementById("resultado").innerHTML =
+                `<p class="error">No se pudieron obtener las bodegas.</p>`;
+
+            return;
+        }
+
+
+        mostrarBodegas(data);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("resultado").innerHTML =
+        `<p class="error">Error al buscar el producto.</p>`;
+    }
+}
+
+
 
 // =========================
 // CREAR BODEGA
@@ -314,6 +363,42 @@ function mostrarBodega(data) {
 
         </div>
     `;
+}
+
+function mostrarBodegas(bodegas) {
+
+    bodegas.array.forEach(data => {
+        document.getElementById("resultado").innerHTML = `
+
+        <div class="resultado">
+
+            <h3>Bodega encontrada</h3>
+
+            <p>
+                <strong>ID:</strong>
+                ${data.id}
+            </p>
+
+            <p>
+                <strong>Nombre:</strong>
+                ${data.nombre}
+            </p>
+
+            <p>
+                <strong>Ubicación:</strong>
+                ${data.ubicacion}
+            </p>
+
+            <p>
+                <strong>Capacidad:</strong>
+                ${data.capacidad}
+            </p>
+
+        </div>
+    `;
+    });
+
+    
 }
 
 
